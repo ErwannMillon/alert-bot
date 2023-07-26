@@ -30,13 +30,11 @@ async def poll_errors():
     while True:
         try:
             response = supabase.table('cluster_errors').select('created_at').order("created_at", desc=True).limit(ERROR_THRESHOLD).execute().data
-            print(len(response))
-            print(response)
+            # print(len(response))
+            # print(response)
             error_timestamps = sorted(
                 (parse(row['created_at']) for row in response)
             )[:ERROR_THRESHOLD]
-            print(type(error_timestamps[0]))
-            print(error_timestamps[0].tzname())
             if not error_timestamps:
                 continue
             filtered_timestamps = [timestamp for timestamp in error_timestamps if datetime.now(pytz.timezone(error_timestamps[0].tzname())) - timestamp <= TIME_WINDOW]
