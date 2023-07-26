@@ -48,5 +48,6 @@ def send_telegram_notification(message):
     except:
         print("caught exception: Failed to send Telegram notification")
         traceback.print_exc()
-send_telegram_notification("error 2")
+if __name__ == '__main__':
+    send_telegram_notification("test")
 
