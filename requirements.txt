@@ -1,0 +1,4 @@
+supabase
+aiogram
+python-dotenv
+tqdm
